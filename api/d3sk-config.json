@@ -16,14 +16,14 @@
    "name": "S&P 500",
    "tok": "SPYx",
    "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
-   "kind": "index"
+   "kind": "etf"
   },
   {
    "sym": "QQQ",
    "name": "Nasdaq-100",
    "tok": "QQQx",
    "mint": "Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ",
-   "kind": "index"
+   "kind": "etf"
   },
   {
    "sym": "NVDA",
@@ -156,7 +156,336 @@
    "name": "Gold",
    "tok": "GLDx",
    "mint": "Xsv9hRk1z5ystj9MhnA7Lq4vjSsLwzL2nxrwmwtD3re",
-   "kind": "gold"
+   "kind": "metal"
+  },
+  {
+   "sym": "ABBV",
+   "name": "AbbVie",
+   "tok": "ABBVx",
+   "mint": "XswbinNKyPmzTa5CskMbCPvMW6G5CMnZXZEeQSSQoie",
+   "kind": "stock"
+  },
+  {
+   "sym": "ABT",
+   "name": "Abbott",
+   "tok": "ABTx",
+   "mint": "XsHtf5RpxsQ7jeJ9ivNewouZKJHbPxhPoEy6yYvULr7",
+   "kind": "stock"
+  },
+  {
+   "sym": "ACN",
+   "name": "Accenture",
+   "tok": "ACNx",
+   "mint": "Xs5UJzmCRQ8DWZjskExdSQDnbE6iLkRu2jjrRAB1JSU",
+   "kind": "stock"
+  },
+  {
+   "sym": "APP",
+   "name": "AppLovin",
+   "tok": "APPx",
+   "mint": "XsPdAVBi8Zc1xvv53k4JcMrQaEDTgkGqKYeh7AYgPHV",
+   "kind": "stock"
+  },
+  {
+   "sym": "AZN",
+   "name": "AstraZeneca",
+   "tok": "AZNx",
+   "mint": "Xs3ZFkPYT2BN7qBMqf1j1bfTeTm1rFzEFSsQ1z3wAKU",
+   "kind": "stock"
+  },
+  {
+   "sym": "BAC",
+   "name": "Bank of America",
+   "tok": "BACx",
+   "mint": "XswsQk4duEQmCbGzfqUUWYmi7pV7xpJ9eEmLHXCaEQP",
+   "kind": "stock"
+  },
+  {
+   "sym": "BRK.B",
+   "name": "Berkshire Hathaway",
+   "tok": "BRK.Bx",
+   "mint": "Xs6B6zawENwAbWVi7w92rjazLuAr5Az59qgWKcNb45x",
+   "kind": "stock"
+  },
+  {
+   "sym": "CMCSA",
+   "name": "Comcast",
+   "tok": "CMCSAx",
+   "mint": "XsvKCaNsxg2GN8jjUmq71qukMJr7Q1c5R2Mk9P8kcS8",
+   "kind": "stock"
+  },
+  {
+   "sym": "CRM",
+   "name": "Salesforce",
+   "tok": "CRMx",
+   "mint": "XsczbcQ3zfcgAEt9qHQES8pxKAVG5rujPSHQEXi4kaN",
+   "kind": "stock"
+  },
+  {
+   "sym": "CRWD",
+   "name": "CrowdStrike",
+   "tok": "CRWDx",
+   "mint": "Xs7xXqkcK7K8urEqGg52SECi79dRp2cEKKuYjUePYDw",
+   "kind": "stock"
+  },
+  {
+   "sym": "CSCO",
+   "name": "Cisco",
+   "tok": "CSCOx",
+   "mint": "Xsr3pdLQyXvDJBFgpR5nexCEZwXvigb8wbPYp4YoNFf",
+   "kind": "stock"
+  },
+  {
+   "sym": "CVX",
+   "name": "Chevron",
+   "tok": "CVXx",
+   "mint": "XsNNMt7WTNA2sV3jrb1NNfNgapxRF5i4i6GcnTRRHts",
+   "kind": "stock"
+  },
+  {
+   "sym": "DFDV",
+   "name": "DeFi Development",
+   "tok": "DFDVx",
+   "mint": "Xs2yquAgsHByNzx68WJC55WHjHBvG9JsMB7CWjTLyPy",
+   "kind": "stock"
+  },
+  {
+   "sym": "DHR",
+   "name": "Danaher",
+   "tok": "DHRx",
+   "mint": "Xseo8tgCZfkHxWS9xbFYeKFyMSbWEvZGFV1Gh53GtCV",
+   "kind": "stock"
+  },
+  {
+   "sym": "GME",
+   "name": "GameStop",
+   "tok": "GMEx",
+   "mint": "Xsf9mBktVB9BSU5kf4nHxPq5hCBJ2j2ui3ecFGxPRGc",
+   "kind": "stock"
+  },
+  {
+   "sym": "GS",
+   "name": "Goldman Sachs",
+   "tok": "GSx",
+   "mint": "XsgaUyp4jd1fNBCxgtTKkW64xnnhQcvgaxzsbAq5ZD1",
+   "kind": "stock"
+  },
+  {
+   "sym": "HD",
+   "name": "Home Depot",
+   "tok": "HDx",
+   "mint": "XszjVtyhowGjSC5odCqBpW1CtXXwXjYokymrk7fGKD3",
+   "kind": "stock"
+  },
+  {
+   "sym": "HON",
+   "name": "Honeywell",
+   "tok": "HONx",
+   "mint": "XsRbLZthfABAPAfumWNEJhPyiKDW6TvDVeAeW7oKqA2",
+   "kind": "stock"
+  },
+  {
+   "sym": "IBM",
+   "name": "IBM",
+   "tok": "IBMx",
+   "mint": "XspwhyYPdWVM8XBHZnpS9hgyag9MKjLRyE3tVfmCbSr",
+   "kind": "stock"
+  },
+  {
+   "sym": "INTC",
+   "name": "Intel",
+   "tok": "INTCx",
+   "mint": "XshPgPdXFRWB8tP1j82rebb2Q9rPgGX37RuqzohmArM",
+   "kind": "stock"
+  },
+  {
+   "sym": "IWM",
+   "name": "Russell 2000",
+   "tok": "IWMx",
+   "mint": "XsbELVbLGBkn7xfMfyYuUipKGt1iRUc2B7pYRvFTFu3",
+   "kind": "etf"
+  },
+  {
+   "sym": "JNJ",
+   "name": "Johnson & Johnson",
+   "tok": "JNJx",
+   "mint": "XsGVi5eo1Dh2zUpic4qACcjuWGjNv8GCt3dm5XcX6Dn",
+   "kind": "stock"
+  },
+  {
+   "sym": "KO",
+   "name": "Coca-Cola",
+   "tok": "KOx",
+   "mint": "XsaBXg8dU5cPM6ehmVctMkVqoiRG2ZjMo1cyBJ3AykQ",
+   "kind": "stock"
+  },
+  {
+   "sym": "LIN",
+   "name": "Linde",
+   "tok": "LINx",
+   "mint": "XsSr8anD1hkvNMu8XQiVcmiaTP7XGvYu7Q58LdmtE8Z",
+   "kind": "stock"
+  },
+  {
+   "sym": "MCD",
+   "name": "McDonald’s",
+   "tok": "MCDx",
+   "mint": "XsqE9cRRpzxcGKDXj1BJ7Xmg4GRhZoyY1KpmGSxAWT2",
+   "kind": "stock"
+  },
+  {
+   "sym": "MDT",
+   "name": "Medtronic",
+   "tok": "MDTx",
+   "mint": "XsDgw22qRLTv5Uwuzn6T63cW69exG41T6gwQhEK22u2",
+   "kind": "stock"
+  },
+  {
+   "sym": "MRK",
+   "name": "Merck",
+   "tok": "MRKx",
+   "mint": "XsnQnU7AdbRZYe2akqqpibDdXjkieGFfSkbkjX1Sd1X",
+   "kind": "stock"
+  },
+  {
+   "sym": "MRVL",
+   "name": "Marvell",
+   "tok": "MRVLx",
+   "mint": "XsuxRGDzbLjnJ72v74b7p9VY6N66uYgTCyfwwRjVCJA",
+   "kind": "stock"
+  },
+  {
+   "sym": "NVO",
+   "name": "Novo Nordisk",
+   "tok": "NVOx",
+   "mint": "XsfAzPzYrYjd4Dpa9BU3cusBsvWfVB9gBcyGC87S57n",
+   "kind": "stock"
+  },
+  {
+   "sym": "OPEN",
+   "name": "Opendoor",
+   "tok": "OPENx",
+   "mint": "XsGtpmjhmC8kyjVSWL4VicGu36ceq9u55PTgF8bhGv6",
+   "kind": "stock"
+  },
+  {
+   "sym": "PEP",
+   "name": "PepsiCo",
+   "tok": "PEPx",
+   "mint": "Xsv99frTRUeornyvCfvhnDesQDWuvns1M852Pez91vF",
+   "kind": "stock"
+  },
+  {
+   "sym": "PFE",
+   "name": "Pfizer",
+   "tok": "PFEx",
+   "mint": "XsAtbqkAP1HJxy7hFDeq7ok6yM43DQ9mQ1Rh861X8rw",
+   "kind": "stock"
+  },
+  {
+   "sym": "PG",
+   "name": "Procter & Gamble",
+   "tok": "PGx",
+   "mint": "XsYdjDjNUygZ7yGKfQaB6TxLh2gC6RRjzLtLAGJrhzV",
+   "kind": "stock"
+  },
+  {
+   "sym": "TBLL",
+   "name": "Treasury bills",
+   "tok": "TBLLx",
+   "mint": "XsqBC5tcVQLYt8wqGCHRnAUUecbRYXoJCReD6w7QEKp",
+   "kind": "etf"
+  },
+  {
+   "sym": "TMO",
+   "name": "Thermo Fisher",
+   "tok": "TMOx",
+   "mint": "Xs8drBWy3Sd5QY3aifG9kt9KFs2K3PGZmx7jWrsrk57",
+   "kind": "stock"
+  },
+  {
+   "sym": "TQQQ",
+   "name": "Nasdaq-100 3x",
+   "tok": "TQQQx",
+   "mint": "XsjQP3iMAaQ3kQScQKthQpx9ALRbjKAjQtHg6TFomoc",
+   "kind": "etf"
+  },
+  {
+   "sym": "UNH",
+   "name": "UnitedHealth",
+   "tok": "UNHx",
+   "mint": "XszvaiXGPwvk2nwb3o9C1CX4K6zH8sez11E6uyup6fe",
+   "kind": "stock"
+  },
+  {
+   "sym": "V",
+   "name": "Visa",
+   "tok": "Vx",
+   "mint": "XsqgsbXwWogGJsNcVZ3TyVouy2MbTkfCFhCGGGcQZ2p",
+   "kind": "stock"
+  },
+  {
+   "sym": "VTI",
+   "name": "Total US market",
+   "tok": "VTIx",
+   "mint": "XsssYEQjzxBCFgvYFFNuhJFBeHNdLWYeUSP8F45cDr9",
+   "kind": "etf"
+  },
+  {
+   "sym": "WMT",
+   "name": "Walmart",
+   "tok": "WMTx",
+   "mint": "Xs151QeqTCiuKtinzfRATnUESM2xTU6V9Wy8Vy538ci",
+   "kind": "stock"
+  },
+  {
+   "sym": "XOM",
+   "name": "Exxon Mobil",
+   "tok": "XOMx",
+   "mint": "XsaHND8sHyfMfsWPj6kSdd5VwvCayZvjYgKmmcNL5qh",
+   "kind": "stock"
+  },
+  {
+   "sym": "SCHF",
+   "name": "Developed markets",
+   "tok": "SCHFx",
+   "mint": "XsWAnFM77x6YvpdaZoos79R12o4Yj4r7EVkaTWddzhU",
+   "kind": "etf"
+  },
+  {
+   "sym": "IEMG",
+   "name": "Emerging markets",
+   "tok": "IEMGx",
+   "mint": "XsFnZawJdLdXfBSEt5Vw29K5vdBiHotdPLjUPafpfHs",
+   "kind": "etf"
+  },
+  {
+   "sym": "IJR",
+   "name": "S&P SmallCap 600",
+   "tok": "IJRx",
+   "mint": "XsyZcb97BzETAqi9BoP2C9D196MiMNBisGMVNje2Thz",
+   "kind": "etf"
+  },
+  {
+   "sym": "TLT",
+   "name": "20+ year Treasuries",
+   "tok": "TLTx",
+   "mint": "XsqD2nwDfGHYNUisQiPWmhQo2xAPLJY51tC2wyxDV4v",
+   "kind": "etf"
+  },
+  {
+   "sym": "VOO",
+   "name": "S&P 500 (Vanguard)",
+   "tok": "VOOx",
+   "mint": "Xsd7TduTbjuYCFL7Uoujb8SbkZLmUsuYNLn7KdvX21x",
+   "kind": "etf"
+  },
+  {
+   "sym": "SLV",
+   "name": "Silver",
+   "tok": "SLVx",
+   "mint": "XsxAd6okt8y1RRK6gNg7iJaqiWNiq5Md5EDf3ZrF2dm",
+   "kind": "metal"
   }
  ]
 }

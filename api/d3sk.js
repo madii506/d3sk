@@ -14,8 +14,10 @@ const bs58 = (m => m.default || m)(require('bs58'));
 const crypto = require('crypto');
 const CFG = require('./d3sk-config.json');
 
-const RPC = process.env.RPC_URL || 'https://api.mainnet-beta.solana.com';
-const conn = new Connection(RPC, 'confirmed');
+// RPC with fallback: a rate-limited or failing endpoint hands the same request to the next one
+const RPCS = [process.env.RPC_URL, 'https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com'].filter(Boolean), RPC = RPCS[0];
+async function rpcFetch(url, opts) { let last = null; for (const u of RPCS) { try { const r = await fetch(u, { ...opts, signal: AbortSignal.timeout(12000) }); if (r.status === 429 || r.status >= 500) { last = r; continue; } return r; } catch (e) { last = e; } } if (last instanceof Error) throw last; return last; }
+const conn = new Connection(RPC, { commitment: 'confirmed', fetch: rpcFetch, disableRetryOnRateLimit: true });
 const JUP = 'https://lite-api.jup.ag';
 const SOL = 'So11111111111111111111111111111111111111112';
 const MEMO = new PublicKey('MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr');
@@ -48,11 +50,11 @@ const blobBase = () => { const id = (process.env.BLOB_STORE_ID || '').replace(/^
 async function readPath(path) { const b = blobBase(); if (!b) throw new Error('storage is not switched on yet'); return readJSON(b + PFX + path); }
 
 // ---------------------------------------------------------------- tokens: what a mint is, whether it can move wallet to wallet, and its price
-const STOCKS = CFG.stocks, STOCK = Object.fromEntries(STOCKS.map(s => [s.mint, s]));
+const STOCKS = CFG.stocks, STOCK = Object.fromEntries(STOCKS.map(s => [s.mint, s])), THIN = 5000;
 // official logos for the fixed pairs, so a real logo shows even when the price feed is rate-limited
 const TL = 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/';
 const ICONS = Object.fromEntries([...STOCKS.map(s => [s.mint, `https://xstocks-metadata.backed.fi/logos/tokens/${s.tok}.png`]), [SOL, TL + SOL + '/logo.png'], ...CFG.cash.map(c => [c.mint, TL + c.mint + '/logo.png'])]);
-async function jupInfo(mints) { const o = {}; const L = [...new Set(mints)].filter(Boolean); for (let i = 0; i < L.length; i += 90) { try { const j = await getJ(`${JUP}/tokens/v2/search?query=${L.slice(i, i + 90).join(',')}`); for (const t of j || []) o[t.id] = { symbol: t.symbol, name: t.name, icon: t.icon || null, decimals: t.decimals, usd: t.usdPrice ?? null, ch24: t.stats24h ? t.stats24h.priceChange ?? null : null, mcap: t.mcap ?? t.fdv ?? null, liquidity: t.liquidity ?? null, verified: !!t.isVerified, holders: t.holderCount ?? null }; } catch { } } for (const m of L) if (ICONS[m]) o[m] = { ...(o[m] || {}), icon: ICONS[m] }; return o; }
+async function jupInfo(mints) { const o = {}; const L = [...new Set(mints)].filter(Boolean); for (let i = 0; i < L.length; i += 90) { try { const j = await getJ(`${JUP}/tokens/v2/search?query=${L.slice(i, i + 90).join(',')}`); for (const t of j || []) o[t.id] = { symbol: t.symbol, name: t.name, icon: t.icon || null, decimals: t.decimals, usd: STOCK[t.id] && (t.liquidity ?? 0) < THIN ? null : t.usdPrice ?? null, ch24: STOCK[t.id] && (t.liquidity ?? 0) < THIN ? null : t.stats24h ? t.stats24h.priceChange ?? null : null, mcap: t.mcap ?? t.fdv ?? null, liquidity: t.liquidity ?? null, verified: !!t.isVerified, holders: t.holderCount ?? null }; } catch { } } for (const m of L) if (ICONS[m]) o[m] = { ...(o[m] || {}), icon: (o[m] && o[m].icon) || ICONS[m] }; return o; }
 const effMultiplier = st => { if (!st) return 1; const now = Date.now() / 1000; const m = +(now >= +(st.newMultiplierEffectiveTimestamp || 0) && st.newMultiplier ? st.newMultiplier : st.multiplier); return m > 0 ? m : 1; };
 async function mintInfo(mintStr) { const mint = pk(mintStr, 'bad mint').toBase58();
   return memo('mint:' + mint, 300000, async () => {
