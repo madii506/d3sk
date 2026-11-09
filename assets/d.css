@@ -501,3 +501,5 @@ body[data-v=home] .main{padding-bottom:0}
 .sx-hit.go{animation:sxring .9s var(--ease)}@keyframes sxring{from{transform:scale(.06);opacity:.9}to{transform:scale(1);opacity:0}}
 @media (max-height:820px) and (min-width:601px){.sx-mid .sx-wm{margin-bottom:36px}}
 @media (max-width:600px){.sx-mid .sx-wm{margin-bottom:36px}.sx-hit{width:180px;height:180px;margin:-90px 0 0 -90px}}
+/* background logos: one smooth loop drives them; no CSS bob, no transition lag */
+.sx-float>span{transition:none;will-change:transform;transform:translate3d(0,0,0)}.sx-float>span>.lg{animation:none}
