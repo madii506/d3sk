@@ -464,3 +464,31 @@ body[data-v=home] .main{padding-bottom:0}
 .sx-stage{height:250px;margin-bottom:22px}.sx-lab{transition:opacity .3s}.sx-stage.moving .sx-lab{opacity:0}
 @media (max-width:600px){.sx-stage{height:220px}}
 @media (max-width:760px){.sx-float{display:none}}
+/* start v4: buttons in the middle, the swap under them */
+.sx-mid .sx-cta{margin-top:0;animation-delay:.2s}.sx-mid .sx-cta .btn{height:60px;padding:0 36px;font-size:16px;border-radius:14px}
+.sx-mid .sx-stage{margin-top:34px;margin-bottom:0;animation-delay:.45s}
+@media (max-width:760px){.sx-mid .sx-cta{flex-direction:row;justify-content:center;max-width:none}.sx-mid .sx-cta .btn{height:54px;padding:0 22px;font-size:15px}}
+/* ================= start v5: calm, centred, a pair card and a dot-matrix floor ================= */
+.cv{position:relative;height:100svh;min-height:620px;overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+#cvDots{position:absolute;left:0;right:0;bottom:0;width:100%;height:46%;z-index:-1;-webkit-mask-image:linear-gradient(90deg,#000 70%,rgba(0,0,0,.9));mask-image:linear-gradient(90deg,#000 70%,rgba(0,0,0,.9))}
+.cv-bar{flex:none;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.cv-mid{flex:1;display:flex;flex-direction:column;align-items:center;padding:3vh 20px 0;text-align:center}
+.cv-logo{display:flex;align-items:center;gap:18px;animation:pgin .7s var(--ease) both}.cv-logo img{width:76px;height:76px}
+.cv-logo h1{font-size:clamp(64px,7vw,92px);line-height:1;letter-spacing:-.06em}
+.cv-tag{margin:16px 0 0;font:500 clamp(18px,1.7vw,22px)/1.3 IN;color:var(--tx);animation:pgin .7s .08s var(--ease) both}.cv-tag i{font-style:normal;color:var(--c);margin:0 8px}.cv-tag span{color:var(--mu)}
+.cv-card{width:min(480px,100%);margin-top:24px;padding:16px 18px 14px;border-radius:14px;border:1px solid var(--line2);background:rgba(12,20,54,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:pgin .7s .16s var(--ease) both}
+.cv-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cv-side{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:8px;margin:-8px;border:0;background:none;border-radius:10px;text-align:left;transition:background .2s;min-width:0}
+.cv-side:hover{background:rgba(140,160,255,.07)}.cv-side.r{align-items:flex-end;text-align:right}.cv-side .lab{font-size:10.5px}
+.cv-tok{display:flex;align-items:center;gap:9px;min-width:0}.cv-tok b{font:700 20px/1 JB;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}.cv-side.r .cv-tok{flex-direction:row-reverse}
+.cv-px{font-size:11.5px;color:var(--mu2)}
+.cv-arc{width:120px;height:44px;flex:none}
+.cv-line{margin:14px 0 0;font:500 12px/1.5 JB;color:var(--mu)}.cv-line b{color:var(--tx);font-weight:700}.cv-line i{font-style:normal;color:var(--mu2);margin:0 4px}
+.cv-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:12px}
+.cv-chips button{height:30px;padding:0 12px;border-radius:99px;border:1px solid var(--line2);background:rgba(5,10,31,.4);font:500 12.5px/1 IN;color:var(--mu);transition:color .2s,border-color .2s,background .2s}
+.cv-chips button:hover{color:var(--tx)}.cv-chips button.on{border-color:rgba(34,211,238,.6);color:var(--c);background:rgba(34,211,238,.08)}
+.cv-go{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:min(280px,100%);height:48px;margin-top:22px;border-radius:10px;background:var(--c);color:#04121a;font:700 15px/1 IN;transition:filter .2s;animation:pgin .7s .24s var(--ease) both}
+.cv-go:hover{filter:brightness(1.08)}.cv-go span{transition:transform .2s var(--ease)}.cv-go:hover span{transform:translateX(4px)}
+.cv-links{display:flex;gap:26px;margin-top:22px;animation:pgin .7s .3s var(--ease) both}.cv-links a{font-size:14px;color:var(--mu);transition:color .2s}.cv-links a:hover{color:var(--tx)}
+.cv-foot{margin:14px 0 0;max-width:340px;font-size:12px;line-height:1.5;color:var(--mu2);animation:pgin .7s .36s var(--ease) both}
+@media (max-width:600px){.cv-logo{gap:12px}.cv-logo img{width:54px;height:54px}.cv-logo h1{font-size:58px}.cv-arc{width:64px}.cv-tok b{font-size:16px;max-width:96px}.cv-bar{padding:0 16px}.cv-links{gap:18px}#cvDots{height:30%}}
