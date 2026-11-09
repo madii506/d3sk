@@ -1,0 +1,15 @@
+{
+  "name": "d3sk",
+  "private": true,
+  "version": "1.0.0",
+  "description": "OTC desk for Raydium coins and real stocks. Wallet to wallet, one transaction.",
+  "engines": { "node": "22.x" },
+  "dependencies": {
+    "@noble/curves": "1.9.7",
+    "@solana/spl-token": "0.4.15",
+    "@solana/web3.js": "1.99.0",
+    "@vercel/blob": "2.8.2",
+    "bs58": "6.0.0"
+  },
+  "overrides": { "rpc-websockets": "9.3.3" }
+}
