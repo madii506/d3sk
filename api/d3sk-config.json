@@ -1,0 +1,162 @@
+{
+ "name": "d3sk",
+ "tag": "H7jDWvfbEL1SH5WKifwQuvWs4StZ1ce59gVtuF1oFs8C",
+ "treasury": "3vxNXZvHbLQYv3HYTjdbX418dngn1FhKypMi1nNbB5wD",
+ "feeBps": 30,
+ "cash": [
+  {
+   "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+   "symbol": "USDC",
+   "name": "USD Coin"
+  }
+ ],
+ "stocks": [
+  {
+   "sym": "SPY",
+   "name": "S&P 500",
+   "tok": "SPYx",
+   "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
+   "kind": "index"
+  },
+  {
+   "sym": "QQQ",
+   "name": "Nasdaq-100",
+   "tok": "QQQx",
+   "mint": "Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ",
+   "kind": "index"
+  },
+  {
+   "sym": "NVDA",
+   "name": "Nvidia",
+   "tok": "NVDAx",
+   "mint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh",
+   "kind": "stock"
+  },
+  {
+   "sym": "TSLA",
+   "name": "Tesla",
+   "tok": "TSLAx",
+   "mint": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB",
+   "kind": "stock"
+  },
+  {
+   "sym": "AAPL",
+   "name": "Apple",
+   "tok": "AAPLx",
+   "mint": "XsbEhLAtcf6HdfpFZ5xEMdqW8nfAvcsP5bdudRLJzJp",
+   "kind": "stock"
+  },
+  {
+   "sym": "MSFT",
+   "name": "Microsoft",
+   "tok": "MSFTx",
+   "mint": "XspzcW1PRtgf6Wj92HCiZdjzKCyFekVD8P5Ueh3dRMX",
+   "kind": "stock"
+  },
+  {
+   "sym": "GOOGL",
+   "name": "Alphabet",
+   "tok": "GOOGLx",
+   "mint": "XsCPL9dNWBMvFtTmwcCA5v3xWPSMEBCszbQdiLLq6aN",
+   "kind": "stock"
+  },
+  {
+   "sym": "META",
+   "name": "Meta",
+   "tok": "METAx",
+   "mint": "Xsa62P5mvPszXL1krVUnU5ar38bBSVcWAB6fmPCo5Zu",
+   "kind": "stock"
+  },
+  {
+   "sym": "AMZN",
+   "name": "Amazon",
+   "tok": "AMZNx",
+   "mint": "Xs3eBt7uRfJX8QUs4suhyU8p2M6DoUDrJyWBa8LLZsg",
+   "kind": "stock"
+  },
+  {
+   "sym": "AVGO",
+   "name": "Broadcom",
+   "tok": "AVGOx",
+   "mint": "XsgSaSvNSqLTtFuyWPBhK9196Xb9Bbdyjj4fH3cPJGo",
+   "kind": "stock"
+  },
+  {
+   "sym": "AMD",
+   "name": "AMD",
+   "tok": "AMDx",
+   "mint": "XsXcJ6GZ9kVnjqGsjBnktRcuwMBmvKWh8S93RefZ1rF",
+   "kind": "stock"
+  },
+  {
+   "sym": "PLTR",
+   "name": "Palantir",
+   "tok": "PLTRx",
+   "mint": "XsoBhf2ufR8fTyNSjqfU71DYGaE6Z3SUGAidpzriAA4",
+   "kind": "stock"
+  },
+  {
+   "sym": "NFLX",
+   "name": "Netflix",
+   "tok": "NFLXx",
+   "mint": "XsEH7wWfJJu2ZT3UCFeVfALnVA6CP5ur7Ee11KmzVpL",
+   "kind": "stock"
+  },
+  {
+   "sym": "ORCL",
+   "name": "Oracle",
+   "tok": "ORCLx",
+   "mint": "XsjFwUPiLofddX5cWFHW35GCbXcSu1BCUGfxoQAQjeL",
+   "kind": "stock"
+  },
+  {
+   "sym": "JPM",
+   "name": "JPMorgan",
+   "tok": "JPMx",
+   "mint": "XsMAqkcKsUewDrzVkait4e5u4y8REgtyS7jWgCpLV2C",
+   "kind": "stock"
+  },
+  {
+   "sym": "LLY",
+   "name": "Eli Lilly",
+   "tok": "LLYx",
+   "mint": "Xsnuv4omNoHozR6EEW5mXkw8Nrny5rB3jVfLqi6gKMH",
+   "kind": "stock"
+  },
+  {
+   "sym": "COIN",
+   "name": "Coinbase",
+   "tok": "COINx",
+   "mint": "Xs7ZdzSHLU9ftNJsii5fCeJhoRWSC32SQGzGQtePxNu",
+   "kind": "stock"
+  },
+  {
+   "sym": "HOOD",
+   "name": "Robinhood",
+   "tok": "HOODx",
+   "mint": "XsvNBAYkrDRNhA7wPHQfX3ZUXZyZLdnCQDfHZ56bzpg",
+   "kind": "stock"
+  },
+  {
+   "sym": "MSTR",
+   "name": "Strategy",
+   "tok": "MSTRx",
+   "mint": "XsP7xzNPvEHS1m6qfanPUGjNmdnmsLKEoNAnHjdxxyZ",
+   "kind": "stock"
+  },
+  {
+   "sym": "CRCL",
+   "name": "Circle",
+   "tok": "CRCLx",
+   "mint": "XsueG8BtpquVJX9LVLLEGuViXUungE6WmK5YZ3p3bd1",
+   "kind": "stock"
+  },
+  {
+   "sym": "GOLD",
+   "name": "Gold",
+   "tok": "GLDx",
+   "mint": "Xsv9hRk1z5ystj9MhnA7Lq4vjSsLwzL2nxrwmwtD3re",
+   "kind": "gold"
+  }
+ ]
+}
