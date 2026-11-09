@@ -4,7 +4,7 @@
 // pay, nothing moves. Offers are free signed messages; tickets (pre-signed trades) are stored as they were signed; their status is read from
 // the chain. Every settled trade pays 0 SOL to a fixed tag address, so the chain itself lists them.
 // GET  a=token&mint= · a=pairs · a=offers · a=offer&id= · a=ticket&id= · a=tickets&wallet= · a=wallet&addr= · a=bags&addr= · a=holders&mint=
-//      a=poolcheck&mint=&amount= · a=dumps · a=settled · a=stats · a=nonces&wallet= · a=simLegs (dry run between any two wallets)
+//      a=poolcheck&mint=&amount= · a=dumps · a=settled · a=stats · a=nonces&wallet= · a=simLegs&wa=&wb=&giveMint=&give=&getMint=&get= (dry run between any two wallets)
 // POST a=prepareOffer · a=postOffer · a=prepareCancelOffer · a=cancelOffer · a=buildTicket · a=submitTicket · a=buildCancel · a=buildNonce
 //      a=buildNonceRefund · a=send
 const { Connection, PublicKey, SystemProgram, Transaction, TransactionInstruction, NonceAccount, NONCE_ACCOUNT_LENGTH, VersionedTransaction } = require('@solana/web3.js');
@@ -220,7 +220,7 @@ async function bags(addr) { const W = pk(addr, 'bad wallet').toBase58(); return 
   for (const t of list) { try { const q = await getJ(`${JUP}/swap/v1/quote?inputMint=${t.mint}&outputMint=${SOL}&amount=${t.raw}&slippageBps=5000`, 9000); t.impactPct = +q.priceImpactPct * 100; t.poolUsd = v.solUsd ? +q.outAmount / 1e9 * v.solUsd : null; } catch { t.impactPct = null; } await sleep(150); }
   return { ...v, bags: list }; }); }
 async function holders(mintStr) { const t = await token(mintStr); if (t.native) throw new Error('pick a coin or a stock'); return memo('holders:' + t.mint, 60000, async () => {
-  const [top, sup] = await Promise.all([conn.getTokenLargestAccounts(new PublicKey(t.mint)), conn.getTokenSupply(new PublicKey(t.mint))]); const infos = await conn.getMultipleParsedAccounts(top.value.map(x => x.address));
+  let top, sup; try { [top, sup] = await Promise.all([conn.getTokenLargestAccounts(new PublicKey(t.mint)), conn.getTokenSupply(new PublicKey(t.mint))]); } catch (e) { throw new Error('the public Solana RPC is rate-limiting holder lists right now. try again in a minute'); } const infos = await conn.getMultipleParsedAccounts(top.value.map(x => x.address));
   const supply = +sup.value.amount; const rows = infos.value.map((x, i) => x ? { owner: x.data.parsed.info.owner, raw: top.value[i].amount } : null).filter(Boolean)
     .map(r => { let wallet = false; try { wallet = PublicKey.isOnCurve(new PublicKey(r.owner).toBytes()); } catch { } const ui = toUi(r.raw, t); return { owner: r.owner, wallet, ui, pct: supply ? +r.raw / supply * 100 : null, usd: t.usd != null ? ui * t.usd : null }; });
   return { token: { symbol: t.symbol, mint: t.mint, icon: t.icon, usd: t.usd, name: t.name, kind: t.kind }, holders: rows }; }); }
@@ -242,7 +242,7 @@ async function settled() { return memo('settled', 20000, async () => { const sig
   return { tag: TAG.toBase58(), trades: rows, totals: { trades: rows.length, volumeUsd: rows.reduce((a, r) => a + (r.usd || 0), 0) } }; }); }
 async function stats() { const [S, O] = await Promise.all([settled().catch(() => ({ totals: { trades: 0, volumeUsd: 0 } })), offers().catch(() => [])]); return { trades: S.totals.trades, volumeUsd: S.totals.volumeUsd, openOffers: O.filter(o => o.status === 'open').length, offers: O.length, feeBps: TREASURY ? FEE_BPS : 0, treasury: TREASURY ? TREASURY.toBase58() : null, storage: !!process.env.BLOB_READ_WRITE_TOKEN, tag: TAG.toBase58() }; }
 // a dry run of the two legs between any two wallets (normal blockhash, no nonce), simulated with signatures skipped
-async function simLegs(q) { const a = q.get('a'), b = q.get('b'); const L = await checkLegs(a, b, { mint: q.get('giveMint'), amount: +q.get('give') }, { mint: q.get('getMint'), amount: +q.get('get') }); const fee = await feeFor(L.tA, L.rawA, L.tB, L.rawB);
+async function simLegs(q) { const a = q.get('wa'), b = q.get('wb'); const L = await checkLegs(a, b, { mint: q.get('giveMint'), amount: +q.get('give') }, { mint: q.get('getMint'), amount: +q.get('get') }); const fee = await feeFor(L.tA, L.rawA, L.tB, L.rawB);
   const { blockhash } = await conn.getLatestBlockhash('confirmed'); const t = tradeTx({ ...L, nonceAccount: null, nonceValue: blockhash, feeLamports: fee, id: 'simulate1' });
   const r = await conn.simulateTransaction(new VersionedTransaction(t.compileMessage()), { sigVerify: false, replaceRecentBlockhash: true });
   return { give: `${toUi(L.rawA, L.tA)} ${L.tA.symbol}`, get: `${toUi(L.rawB, L.tB)} ${L.tB.symbol}`, programs: t.instructions.map(i => i.programId.toBase58().slice(0, 6)), bytes: t.serialize({ requireAllSignatures: false, verifySignatures: false }).length, feeSol: fee / 1e9, err: r.value.err, units: r.value.unitsConsumed, logs: (r.value.logs || []).filter(l => /rror|insufficient|failed|TransferChecked|Transfer/i.test(l)).slice(-8), warn: { a: L.tA.warn, b: L.tB.warn } }; }
