@@ -1,6 +1,21 @@
 {
-  "functions": { "api/d3sk.js": { "maxDuration": 30 } },
+  "functions": {
+    "api/d3sk.js": {
+      "maxDuration": 30
+    },
+    "api/launch.js": {
+      "maxDuration": 30
+    }
+  },
   "headers": [
-    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
   ]
 }

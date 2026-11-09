@@ -3,13 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "description": "OTC desk for Raydium coins and real stocks. Wallet to wallet, one transaction.",
-  "engines": { "node": "22.x" },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@noble/curves": "1.9.7",
     "@solana/spl-token": "0.4.15",
     "@solana/web3.js": "1.99.0",
     "@vercel/blob": "2.8.2",
-    "bs58": "6.0.0"
+    "bs58": "6.0.0",
+    "@raydium-io/raydium-sdk-v2": "0.2.81-alpha",
+    "bn.js": "^5.2.1"
   },
-  "overrides": { "rpc-websockets": "9.3.3" }
+  "overrides": {
+    "rpc-websockets": "9.3.3"
+  }
 }
