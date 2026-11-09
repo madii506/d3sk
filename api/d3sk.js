@@ -15,8 +15,8 @@ const crypto = require('crypto');
 const CFG = require('./d3sk-config.json');
 
 // RPC with fallback: a rate-limited or failing endpoint hands the same request to the next one
-const RPCS = [process.env.RPC_URL, 'https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com'].filter(Boolean), RPC = RPCS[0];
-async function rpcFetch(url, opts) { let last = null; for (const u of RPCS) { try { const r = await fetch(u, { ...opts, signal: AbortSignal.timeout(12000) }); if (r.status === 429 || r.status >= 500) { last = r; continue; } return r; } catch (e) { last = e; } } if (last instanceof Error) throw last; return last; }
+const RPCS = [process.env.RPC_URL, 'https://api.mainnet-beta.solana.com', 'https://solana-rpc.publicnode.com'].filter(Boolean), RPC = RPCS[0];
+async function rpcFetch(url, opts) { let last = null; for (let round = 0; round < 2; round++) { for (const u of RPCS) { try { const r = await fetch(u, { ...opts, signal: AbortSignal.timeout(12000) }); if (r.status === 429 || r.status === 401 || r.status === 403 || r.status >= 500) { last = r; continue; } return r; } catch (e) { last = e; } } await new Promise(r => setTimeout(r, 700)); } if (last instanceof Error) throw last; return last; }
 const conn = new Connection(RPC, { commitment: 'confirmed', fetch: rpcFetch, disableRetryOnRateLimit: true });
 const JUP = 'https://lite-api.jup.ag';
 const SOL = 'So11111111111111111111111111111111111111112';
