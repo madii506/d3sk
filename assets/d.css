@@ -492,3 +492,12 @@ body[data-v=home] .main{padding-bottom:0}
 .cv-links{display:flex;gap:26px;margin-top:22px;animation:pgin .7s .3s var(--ease) both}.cv-links a{font-size:14px;color:var(--mu);transition:color .2s}.cv-links a:hover{color:var(--tx)}
 .cv-foot{margin:14px 0 0;max-width:340px;font-size:12px;line-height:1.5;color:var(--mu2);animation:pgin .7s .36s var(--ease) both}
 @media (max-width:600px){.cv-logo{gap:12px}.cv-logo img{width:54px;height:54px}.cv-logo h1{font-size:58px}.cv-arc{width:64px}.cv-tok b{font-size:16px;max-width:96px}.cv-bar{padding:0 16px}.cv-links{gap:18px}#cvDots{height:30%}}
+/* start v6: the title back on top, no subline, everything a little lower */
+.sx-mid{padding-top:6vh}.sx-mid .sx-wm{margin:0 0 40px}.sx-mid .sx-cta{animation-delay:.45s}.sx-mid .sx-stage{margin-top:38px;animation-delay:.65s}
+@media (max-height:820px) and (min-width:601px){.sx-mid{padding-top:2vh}.sx-mid .sx-wm{font-size:110px;margin-bottom:28px}.sx-mid .sx-stage{margin-top:22px}}
+@media (max-width:600px){.sx-mid{padding-top:4vh}.sx-mid .sx-wm{margin-bottom:28px}}
+.sx-mid .sx-wm{margin-bottom:56px}
+.sx-hit{width:240px;height:240px;margin:-120px 0 0 -120px;border:1.5px solid rgba(34,211,238,.55);opacity:0}
+.sx-hit.go{animation:sxring .9s var(--ease)}@keyframes sxring{from{transform:scale(.06);opacity:.9}to{transform:scale(1);opacity:0}}
+@media (max-height:820px) and (min-width:601px){.sx-mid .sx-wm{margin-bottom:36px}}
+@media (max-width:600px){.sx-mid .sx-wm{margin-bottom:36px}.sx-hit{width:180px;height:180px;margin:-90px 0 0 -90px}}
