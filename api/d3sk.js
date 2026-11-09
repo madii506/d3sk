@@ -111,8 +111,12 @@ async function buildNonceRefund(req) { const b = await body(req), w = pk(b.walle
 function legIxs(payer, from, to, t, raw) { if (t.native) return [SystemProgram.transfer({ fromPubkey: from, toPubkey: to, lamports: BigInt(raw) })];
   const mint = new PublicKey(t.mint), prog = new PublicKey(t.program), src = SPL.getAssociatedTokenAddressSync(mint, from, true, prog), dst = SPL.getAssociatedTokenAddressSync(mint, to, true, prog);
   return [SPL.createAssociatedTokenAccountIdempotentInstruction(payer, dst, to, mint, prog), SPL.createTransferCheckedInstruction(src, mint, dst, from, BigInt(raw), t.decimals, [], prog)]; }
+// a fee into an empty treasury must lift it past Solana's rent-exempt minimum, or the whole trade fails
+const RENT0 = 890880; let treasBal = { t: 0, v: null };
+async function treasuryLamports() { if (treasBal.v != null && Date.now() - treasBal.t < 60000) return treasBal.v; try { treasBal = { t: Date.now(), v: await conn.getBalance(TREASURY) }; return treasBal.v; } catch { return null; } }
 async function feeFor(tA, rawA, tB, rawB) { if (!TREASURY || !FEE_BPS) return 0; const su = await solUsd(); const vA = tA.usd != null ? toUi(rawA, tA) * tA.usd : null, vB = tB.usd != null ? toUi(rawB, tB) * tB.usd : null; const v = Math.max(vA || 0, vB || 0);
-  if (!(su > 0) || !(v > 0)) return 1000000; return Math.max(500000, Math.min(5e9, Math.round(v * FEE_BPS / 1e4 / su * 1e9))); }
+  let f = !(su > 0) || !(v > 0) ? 1000000 : Math.max(500000, Math.min(5e9, Math.round(v * FEE_BPS / 1e4 / su * 1e9)));
+  const tb = await treasuryLamports(); if (tb == null || tb < RENT0) f = Math.max(f, RENT0 - (tb || 0) + 10000); return f; }
 function tradeTx({ a, b, tA, rawA, tB, rawB, nonceAccount, nonceValue, feeLamports, id }) { const t = new Transaction(); t.feePayer = a; t.recentBlockhash = nonceValue;
   if (nonceAccount) t.add(SystemProgram.nonceAdvance({ noncePubkey: nonceAccount, authorizedPubkey: a }));
   t.add(...legIxs(a, a, b, tA, rawA), ...legIxs(a, b, a, tB, rawB));
